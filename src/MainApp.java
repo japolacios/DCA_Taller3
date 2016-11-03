@@ -12,7 +12,7 @@ public class MainApp extends PApplet {
 		int alto = 600;
 		int ancho = 1000;
 
-		size(ancho, alto);
+		size(ancho, alto, P3D);
 
 		System.out.println("Canvas Size " + ancho + "x" + alto);
 	}

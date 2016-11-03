@@ -1,7 +1,12 @@
 import java.util.ArrayList;
 
+import de.voidplus.leapmotion.Finger;
+import de.voidplus.leapmotion.Hand;
+import de.voidplus.leapmotion.LeapMotion;
 import processing.core.PApplet;
 import processing.core.PImage;
+import processing.core.PVector;
+import de.voidplus.leapmotion.*;
 
 public class Logica {
 	// Atributes
@@ -15,12 +20,12 @@ public class Logica {
 	// Constructor
 	public Logica(PApplet _app) {
 		app = _app;
-	
+		
 	}
 
 	// Paint Method
 	public void paint() {
-
+		
 	}
 
 	// Paint Elements - Loop that calls paint method on every element
@@ -33,6 +38,9 @@ public class Logica {
 	public void createElements() {
 
 	}
+	
+	
+
 
 	// ------------------------------
 	// Mouse Events
