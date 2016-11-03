@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 
-
+<<<<<<< HEAD
+import Game.Game;
+=======
 import de.voidplus.leapmotion.Finger;
 import de.voidplus.leapmotion.Hand;
 import de.voidplus.leapmotion.LeapMotion;
-
-import Game.Game;
-
+>>>>>>> c1faabc6bf7982afb756edd8f8090681f447bd77
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.core.PVector;
