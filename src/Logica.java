@@ -1,8 +1,12 @@
 import java.util.ArrayList;
 
+
 import de.voidplus.leapmotion.Finger;
 import de.voidplus.leapmotion.Hand;
 import de.voidplus.leapmotion.LeapMotion;
+
+import Game.Game;
+
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.core.PVector;
@@ -11,8 +15,8 @@ import de.voidplus.leapmotion.*;
 public class Logica {
 	// Atributes
 	PApplet app;
-	
-
+	Stage stage;
+	Game game;
 	
 	//Relations
 	

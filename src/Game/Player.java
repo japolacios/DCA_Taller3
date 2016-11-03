@@ -1,4 +1,7 @@
 package Game;
+import java.util.ArrayList;
+
+import Buildings.Building;
 import processing.core.PApplet;
 
 public class Player {
@@ -9,8 +12,11 @@ public class Player {
 	private int corn;
 	private int industry;
 	
-	//Constructor
+	//Relations
+	ArrayList<Building> buildings;
+	ArrayList<Water> drops;
 	
+	//Constructor
 	Player(PApplet _app){
 	app = _app;
 	}
