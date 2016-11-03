@@ -1,13 +1,14 @@
 import java.util.ArrayList;
 
+import Game.Game;
 import processing.core.PApplet;
 import processing.core.PImage;
 
 public class Logica {
 	// Atributes
 	PApplet app;
-	
-
+	Stage stage;
+	Game game;
 	
 	//Relations
 	
