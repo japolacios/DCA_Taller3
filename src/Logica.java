@@ -1,21 +1,11 @@
 import java.util.ArrayList;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/japolacios/DCA_Taller3.git
 import Game.Game;
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'master' of https://github.com/japolacios/DCA_Taller3.git
 import de.voidplus.leapmotion.Finger;
 import de.voidplus.leapmotion.Hand;
 import de.voidplus.leapmotion.LeapMotion;
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'master' of https://github.com/japolacios/DCA_Taller3.git
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.core.PVector;
