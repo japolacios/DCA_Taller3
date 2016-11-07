@@ -14,15 +14,12 @@ public class MainApp extends PApplet {
 	public void settings() {
 
 		// Set Size
-<<<<<<< HEAD
-		int alto = 600;
-		int ancho = 1000;
-//hola khe ahxwe
-=======
+
+
 		int alto = 720;
 		int ancho = 1280;
 
->>>>>>> 088d9dede4868f698c5e5aca173ba4e7ac45d4ec
+
 		size(ancho, alto, P3D);
 
 		System.out.println("Canvas Size " + ancho + "x" + alto);
@@ -79,7 +76,7 @@ public class MainApp extends PApplet {
 			ellipse(hand.getFinger(1).getPosition().x, hand.getFinger(1).getPosition().y, 100,100);
 			
 			if (hand.getFinger(1).getPosition().x>width-500 && hand.getFinger(1).getPosition().x<width-300 && hand.getFinger(1).getPosition().y>height/2 && hand.getFinger(1).getPosition().y<height ) {
-				logica.setPantallas(1);
+				
 				
 				}
 		}
