@@ -59,6 +59,7 @@ public class Stage {
 			zonaSensible = false;
 		}
 
+		
 	}
  
 }

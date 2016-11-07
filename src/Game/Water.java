@@ -6,7 +6,7 @@ import processing.core.PShape;
 public class Water extends Thread {
 
 	//Atributes
-	private int x,y,damage,gravity;
+	private int x,y,damage,gravity, cycles;
 	private float scale;
 	private PApplet app;
 	private PShape[] shapes;
@@ -18,14 +18,20 @@ public class Water extends Thread {
 		y=_y;
 		app = _app;
 		hit = false;
+		gravity = 1;
+		damage = 2;
+		cycles = 50;
 		
 	}
 	
 	public void run(){
 		while(hit == false){
 			try{
-				//Some Stuff (hit the fire - hit the Floor )
-				sleep(1);
+				fall();
+				if(cycles <= 0){
+					hit = true;
+				}
+				sleep(100);
 			}
 			catch(Exception e){
 				e.printStackTrace();
@@ -33,7 +39,26 @@ public class Water extends Thread {
 			
 		}
 	}
+	
+	public void paint(){
+		app.ellipse(x, y, 5, 5);
+	}
 
+	public void fall(){
+		cycles--;
+		if(cycles>= 0){
+		x = x-(int)(cycles/3);
+		y = y++;
+		}
+	}
+	/*
+	public void checkHit(int _x, int _y){
+		if (app.dist(x, y,_x, _y)<= 5){
+			hit = true;
+		}
+	}
+	*/
+	
 	/*****************************
 	 * Getters & Setters
 	 ****************************/
@@ -90,8 +115,8 @@ public class Water extends Thread {
 		return hit;
 	}
 
-	public void setHit(boolean hit) {
-		this.hit = hit;
+	public void setHit(boolean _hit) {
+		hit = _hit;
 	}
 	
 
