@@ -9,8 +9,8 @@ public class MainApp extends PApplet {
 	public void settings() {
 
 		// Set Size
-		int alto = 600;
-		int ancho = 1000;
+		int alto = 720;
+		int ancho = 1280;
 
 		size(ancho, alto, P3D);
 
@@ -64,7 +64,7 @@ public class MainApp extends PApplet {
 
 	@Override
 	public void mouseClicked() {
-		logica.clic();
+		
 	}
 	
 	// End Class
