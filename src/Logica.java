@@ -86,9 +86,9 @@ public class Logica {
 			// perdida
 		case 2: 
 			app.background(0);
-			app.fill(0);
+			app.fill(255);
 			app.textSize(50);
-			app.text("Instrucciones", app.width/2, app.height/2);
+			app.text("Perdiste", app.width/2, app.height/2);
 			
 			break;
 			
@@ -137,6 +137,7 @@ public class Logica {
 	}
 	
 	public void keyPressed(){
+		//tecla tester
 		if (app.key=='Q' || app.key=='q'){
 			Pantallas=2;
 		}
