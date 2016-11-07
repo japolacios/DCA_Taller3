@@ -1,12 +1,9 @@
 import java.util.ArrayList;
 
-<<<<<<< HEAD
 import Game.Game;
-=======
 import de.voidplus.leapmotion.Finger;
 import de.voidplus.leapmotion.Hand;
 import de.voidplus.leapmotion.LeapMotion;
->>>>>>> c1faabc6bf7982afb756edd8f8090681f447bd77
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.core.PVector;
@@ -17,19 +14,18 @@ public class Logica {
 	PApplet app;
 	Stage stage;
 	Game game;
-	
-	//Relations
-	
+
+	// Relations
 
 	// Constructor
 	public Logica(PApplet _app) {
 		app = _app;
-		
+
 	}
 
 	// Paint Method
 	public void paint() {
-		
+
 	}
 
 	// Paint Elements - Loop that calls paint method on every element
@@ -37,14 +33,10 @@ public class Logica {
 
 	}
 
-
 	// Slice Data, Create Elements
 	public void createElements() {
 
 	}
-	
-	
-
 
 	// ------------------------------
 	// Mouse Events
