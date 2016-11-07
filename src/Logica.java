@@ -16,35 +16,35 @@ public class Logica {
 	PApplet app;
 	Stage stage;
 	Game game;
-<<<<<<< HEAD
+
 	private int pantalla = 0;
-=======
+
 	int Pantallas;
 	PImage tiger, logo, fondo;
 	
 
->>>>>>> branch 'master' of https://github.com/japolacios/DCA_Taller3.git
+
 	// Relations
 
 	// Constructor
 	public Logica(PApplet _app) {
 		app = _app;
-<<<<<<< HEAD
+
 		stage = new Stage(_app, pantalla);
-=======
+
 	fondo= app.loadImage("../data/Fondo.png");
 	tiger= app.loadImage("../data/tiger.png");
 	logo= app.loadImage("../data/Logo.png");
 	
->>>>>>> branch 'master' of https://github.com/japolacios/DCA_Taller3.git
+
 	}
 
 	// Paint Method
 	public void paint() {
-<<<<<<< HEAD
+
 		stage.buttons();
 		stage.pintar();
-=======
+
 	
 		switch (Pantallas){
 		
@@ -57,7 +57,7 @@ public class Logica {
 		app.image(logo, 10, 10, 534/2, 279/2);
 			app.rectMode(app.CENTER);
 		
-	// BOTÓN JUGAR Y ÁREA SENSIBLE 
+	// BOTï¿½N JUGAR Y ï¿½REA SENSIBLE 
 			if (app.mouseX>188 && app.mouseX<388 && app.mouseY>525 && app.mouseY<575) {
 				app.fill(255,119,0);
 				app.rect(app.width/2-210, app.height/2+250, 210,60, 7);	
@@ -71,7 +71,7 @@ public class Logica {
 				app.textSize(32);
 				app.text("Jugar", app.width/2-250, app.height/2+260);
 				}
-			// BOTÓN INSTRUCCIONES Y ÁREA SENSIBLE 
+			// BOTï¿½N INSTRUCCIONES Y ï¿½REA SENSIBLE 
 			if(app.mouseX>573 && app.mouseX<824 && app.mouseY>525 && app.mouseY<575) {
 				app.fill(255,119,0);
 				app.rect(app.width/2+200, app.height/2+250, 260,60, 7);
@@ -111,7 +111,7 @@ public class Logica {
 		
 		
 		}
->>>>>>> branch 'master' of https://github.com/japolacios/DCA_Taller3.git
+
 	}
 
 	// Paint Elements - Loop that calls paint method on every element
