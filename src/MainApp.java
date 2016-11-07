@@ -51,7 +51,7 @@ public class MainApp extends PApplet {
 	public void mousePressed() {
 		logica.press();
 	}
-
+	
 	@Override
 	public void mouseReleased() {
 		logica.release();
@@ -64,7 +64,13 @@ public class MainApp extends PApplet {
 
 	@Override
 	public void mouseClicked() {
-
+		logica.clic();
 	}
+	
 	// End Class
+	
+	public void keyPressed() {
+		
+logica.keyPressed();	
+	}
 }
