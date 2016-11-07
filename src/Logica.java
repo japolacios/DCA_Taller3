@@ -16,18 +16,19 @@ public class Logica {
 	PApplet app;
 	Stage stage;
 	Game game;
-
+	private int pantalla = 0;
 	// Relations
 
 	// Constructor
 	public Logica(PApplet _app) {
 		app = _app;
-
+		stage = new Stage(_app, pantalla);
 	}
 
 	// Paint Method
 	public void paint() {
-
+		stage.buttons();
+		stage.pintar();
 	}
 
 	// Paint Elements - Loop that calls paint method on every element
