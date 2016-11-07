@@ -9,9 +9,15 @@ public class MainApp extends PApplet {
 	public void settings() {
 
 		// Set Size
+<<<<<<< HEAD
 		int alto = 600;
 		int ancho = 1000;
 //hola khe ahxwe
+=======
+		int alto = 720;
+		int ancho = 1280;
+
+>>>>>>> 088d9dede4868f698c5e5aca173ba4e7ac45d4ec
 		size(ancho, alto, P3D);
 
 		System.out.println("Canvas Size " + ancho + "x" + alto);
@@ -64,7 +70,7 @@ public class MainApp extends PApplet {
 
 	@Override
 	public void mouseClicked() {
-		logica.clic();
+		
 	}
 	
 	// End Class
