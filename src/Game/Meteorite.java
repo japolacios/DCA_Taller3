@@ -6,38 +6,26 @@ import processing.core.PShape;
 public class Meteorite extends Thread {
 	
 	//Atributes
-	private int x,y,damage,lvl,health, yI;
+	private int x,y,damage,size,health;
 	private float scale;
 	private PApplet app;
 	private PShape[] shapes;
-	private boolean wait, hit;
 	
 	
 	//Constructor
-	Meteorite(int _x, int _y, int _lvl, int _health, PApplet _app){
+	Meteorite(int _x, int _y, int _size, int _health, PApplet _app){
 		x=_x;
 		y=_y;
-		lvl = _lvl;
+		size = _size;
 		health = _health;
 		app = _app;
-		wait = false;
-		hit = false;
-		yI = _y;
 	}
 	
 	public void run(){
 		while(health > 0){
 			try{
-				if(wait == false){
-					sleep(((int) app.random(0,(lvl*1000))));
-					wait = true;
-				}
-				if (hit == false){
-					fall();
-				}
-				
-				
-				sleep(100);
+				//Some Stuff (hit the fire - hit the Floor )
+				sleep(1);
 			}
 			catch(Exception e){
 				e.printStackTrace();
@@ -46,15 +34,6 @@ public class Meteorite extends Thread {
 		}
 	}
 
-	
-	private void fall(){
-		while(yI+720 <= 720){
-			y++;
-		}
-		if(yI+720 >= 720){
-			hit = true;
-		}
-	}
 	
 	/**************************************
 	 * Getters & Setters
@@ -84,12 +63,12 @@ public class Meteorite extends Thread {
 		this.damage = damage;
 	}
 
-	public int getLvl() {
-		return lvl;
+	public int getSize() {
+		return size;
 	}
 
-	public void setLvl(int _lvl) {
-		this.lvl = _lvl;
+	public void setSize(int size) {
+		this.size = size;
 	}
 
 	public int getHealth() {
