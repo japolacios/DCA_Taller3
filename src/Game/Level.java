@@ -21,17 +21,23 @@ public class Level extends Observable implements Observer, Runnable {
 	Level(PApplet _app, int _lvl){
 		app = _app;
 		lvl = _lvl;
-		setLvlDificulty(100);
+		meteorites = new ArrayList<Thread>();
+		setLvlDificulty();
 		runMeteorites();
+		
+		System.out.println("Level Initialized");
 	}
 	
 	
-	public void setLvlDificulty(int _playerTotal){
-		if(_playerTotal <= 200){
-			Meteorite tempMeteorite = new Meteorite(app);
-			tempMeteorite.addObserver(this);
-			Thread threadTemp = new Thread(tempMeteorite);
-			meteorites.add(threadTemp);
+	public void setLvlDificulty(){
+		if(lvl <= 200){
+			for (int i = 0; i < 1; i++) {
+				Meteorite tempMeteorite = new Meteorite(app, i);
+				tempMeteorite.addObserver(this);
+				Thread threadTemp = new Thread(tempMeteorite);
+				meteorites.add(threadTemp);	
+				System.out.println("Meteorite "+ i + " initialized");
+			}
 			
 		}
 	}
@@ -39,6 +45,7 @@ public class Level extends Observable implements Observer, Runnable {
 	public void runMeteorites(){
 		for (int i = 0; i < meteorites.size(); i++) {
 			meteorites.get(i).run();
+			System.out.println("Meteorite "+ i + " Runing");
 		}
 	}
 	
@@ -54,11 +61,14 @@ public class Level extends Observable implements Observer, Runnable {
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
-		if (arg.equals("dead")){
-			for (int i = 0; i < meteorites.size(); i++) {
+		if (arg.equals("ground")){
+			int impactX, impactY;
 				Meteorite tempMeteorite = (Meteorite) o;
-				//To Develop
-			}
+				impactX = tempMeteorite.getX();
+				impactY = tempMeteorite.getY();
+				
+				System.out.println("Meteorite " + tempMeteorite.getId() + " hit ground");
+				//Iniciar Fuegos con coordenadas del Impacto - Disminuir salud
 		}
 	}
 }

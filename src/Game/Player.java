@@ -40,6 +40,8 @@ public class Player {
 	
 	//Creates Initial Bouildings
 	createInitialBuildings();
+	
+	System.out.println("Player Initialized");
 	}
 	
 	private void loadShapes(){

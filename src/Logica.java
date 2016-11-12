@@ -54,12 +54,14 @@ public class Logica {
 	// Slice Data, Create Elements
 	public void createElements() {
 		game = new Game(app);
+		System.out.println("New Game Created");
 	}
 	
 	public void stageClick(){
 		if (app.mouseX > 330 && app.mouseX < 540 && app.mouseY > 585 && app.mouseY < 645) {
 			pantalla = 1;
-			
+			System.out.println("Click for Game");
+			createElements();
 		}
 	}
 

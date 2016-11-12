@@ -9,31 +9,39 @@ import processing.core.PShape;
 public class Meteorite extends Observable implements Runnable {
 	
 	//Atributes
-	private int x,y,damage,fallF,health;
+	private int x,y,damage,fallF,health,id;
 	private float scale;
 	private PApplet app;
 	private PImage[] shapes;
 	
 	
 	//Constructor
-	Meteorite(PApplet _app){
+	Meteorite(PApplet _app,int _id){
 		app = _app;
+		id = _id;
 		init();
 	}
 	
 	public void run(){
 		while(true){
 			try{
-				Thread.sleep(300);
+				Thread.sleep(10);
 			}
 			catch(Exception e){
 				e.printStackTrace();
 			}
 			fall();
+			//System.out.println(fallF);
 			paint();
 			if(health <= 0){
 				setChanged();
 				notifyObservers("dead");
+				clearChanged();
+			}
+			if(fallF <= 0){
+				setChanged();
+				notifyObservers("ground");
+				System.out.println("Hit ground on thread");
 				clearChanged();
 			}
 			
@@ -46,22 +54,29 @@ public class Meteorite extends Observable implements Runnable {
 		scale = 1;
 		fallF = 720;
 		health = 100;
+		shapes = new PImage[2];
+		loadGraphics();
 		
 	}
 	
 	public void fall(){
 		if (fallF >= 0){
 			y--;
+			fallF--;
 		}
 	}
 	
 	public void loadGraphics(){
 		shapes[0] = app.loadImage("rock_00.png");
+		
+		System.out.println("Meteorite image Loaded");
 	}
 
 	public void paint(){
+		
 		app.imageMode(app.CENTER);
 		app.image(shapes[0], x, y);
+		
 	}
 	
 	/**************************************
@@ -107,6 +122,10 @@ public class Meteorite extends Observable implements Runnable {
 
 	public void setScale(float scale) {
 		this.scale = scale;
+	}
+	
+	public int getId(){
+		return id;
 	}
 
 	
