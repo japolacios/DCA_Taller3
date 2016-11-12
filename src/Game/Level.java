@@ -1,10 +1,12 @@
 package Game;
 
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import processing.core.PApplet;
 
-public class Level {
+public class Level extends Observable implements Observer, Runnable {
 	
 	//Atributes
 	private int lvl;
@@ -12,21 +14,51 @@ public class Level {
 	private boolean lvlCompleted;
 	
 	//Relations
-	ArrayList<Meteorite> meteorites;
+	ArrayList<Thread> meteorites;
 	ArrayList<Fire> fires;
 	
 	//Constructor
 	Level(PApplet _app, int _lvl){
 		app = _app;
 		lvl = _lvl;
+		setLvlDificulty(100);
+		runMeteorites();
 	}
 	
 	
-	public void setLvlDificulty(){
-		//Sets the amount of meteorites that fall, and how destructive they are
+	public void setLvlDificulty(int _playerTotal){
+		if(_playerTotal <= 200){
+			Meteorite tempMeteorite = new Meteorite(app);
+			tempMeteorite.addObserver(this);
+			Thread threadTemp = new Thread(tempMeteorite);
+			meteorites.add(threadTemp);
+			
+		}
 	}
 	
-	public void checkLvlClear(){
-		//Check if all the meteorites where desroyed and fire out
+	public void runMeteorites(){
+		for (int i = 0; i < meteorites.size(); i++) {
+			meteorites.get(i).run();
+		}
+	}
+	
+
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		if (arg.equals("dead")){
+			for (int i = 0; i < meteorites.size(); i++) {
+				Meteorite tempMeteorite = (Meteorite) o;
+				//To Develop
+			}
+		}
 	}
 }

@@ -19,7 +19,7 @@ public class Stage {
 	}
 
 	public void pintar() {
-		 System.out.println("mx: "+app.mouseX+" "+"my: "+app.mouseY+" "+"cont: "+contador+" "+"zona: "+zonaSensible+" "+"pant: "+pantalla);
+		// System.out.println("mx: "+app.mouseX+" "+"my: "+app.mouseY+" "+"cont: "+contador+" "+"zona: "+zonaSensible+" "+"pant: "+pantalla);
 		switch (pantalla) {
 		// PANTALLA INICIAL
 		case 0:
@@ -103,7 +103,7 @@ public class Stage {
 		float mx = app.mouseX;
 		float my = app.mouseY;
 		// Contador para la zona sensible (si deja la mano sobre la zona del
-		// boton x tiempo se contará como si fuese un click)
+		// boton x tiempo se contarï¿½ como si fuese un click)
 		if (zonaSensible) {
 			if (app.frameCount % 60 == 0) {
 				contador++;

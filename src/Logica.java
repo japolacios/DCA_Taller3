@@ -24,33 +24,54 @@ public class Logica {
 	// Constructor
 	public Logica(PApplet _app) {
 		app = _app;
-
 		stage = new Stage(_app, pantalla);
 
 	}
 
 	// Paint Method
 	public void paint() {
-
-		stage.buttons();
-		stage.pintar();
+		if(pantalla == 0){
+			paintStage();
+		} else if(pantalla == 1){
+			paintElements();
+		}
+		
 
 	}
-
+	
+	public void paintStage(){		
+			stage.buttons();
+			stage.pintar();
+	}
+	
 	// Paint Elements - Loop that calls paint method on every element
 	public void paintElements() {
-
+		if(game != null){
+			game.paint();
+		}
 	}
 
 	// Slice Data, Create Elements
 	public void createElements() {
-
+		game = new Game(app);
+	}
+	
+	public void stageClick(){
+		if (app.mouseX > 330 && app.mouseX < 540 && app.mouseY > 585 && app.mouseY < 645) {
+			pantalla = 1;
+			
+		}
 	}
 
 	// ------------------------------
 	// Mouse Events
 	// ------------------------------
-
+	public void click(){
+		if(pantalla == 0){
+			stageClick();
+		}
+	}
+	
 	public void press() {
 
 	}

@@ -1,39 +1,68 @@
 package Game;
 
+import java.util.Observable;
+
 import processing.core.PApplet;
+import processing.core.PImage;
 import processing.core.PShape;
 
-public class Meteorite extends Thread {
+public class Meteorite extends Observable implements Runnable {
 	
 	//Atributes
-	private int x,y,damage,size,health;
+	private int x,y,damage,fallF,health;
 	private float scale;
 	private PApplet app;
-	private PShape[] shapes;
+	private PImage[] shapes;
 	
 	
 	//Constructor
-	Meteorite(int _x, int _y, int _size, int _health, PApplet _app){
-		x=_x;
-		y=_y;
-		size = _size;
-		health = _health;
+	Meteorite(PApplet _app){
 		app = _app;
+		init();
 	}
 	
 	public void run(){
-		while(health > 0){
+		while(true){
 			try{
-				//Some Stuff (hit the fire - hit the Floor )
-				sleep(1);
+				Thread.sleep(300);
 			}
 			catch(Exception e){
 				e.printStackTrace();
 			}
+			fall();
+			paint();
+			if(health <= 0){
+				setChanged();
+				notifyObservers("dead");
+				clearChanged();
+			}
 			
 		}
 	}
+	
+	public void init(){
+		y = (int) (app.random(-500,-230));
+		x = (int) (app.random(80,1200));
+		scale = 1;
+		fallF = 720;
+		health = 100;
+		
+	}
+	
+	public void fall(){
+		if (fallF >= 0){
+			y--;
+		}
+	}
+	
+	public void loadGraphics(){
+		shapes[0] = app.loadImage("rock_00.png");
+	}
 
+	public void paint(){
+		app.imageMode(app.CENTER);
+		app.image(shapes[0], x, y);
+	}
 	
 	/**************************************
 	 * Getters & Setters
@@ -63,13 +92,6 @@ public class Meteorite extends Thread {
 		this.damage = damage;
 	}
 
-	public int getSize() {
-		return size;
-	}
-
-	public void setSize(int size) {
-		this.size = size;
-	}
 
 	public int getHealth() {
 		return health;
@@ -86,15 +108,6 @@ public class Meteorite extends Thread {
 	public void setScale(float scale) {
 		this.scale = scale;
 	}
-
-	public PShape[] getShapes() {
-		return shapes;
-	}
-
-	public void setShapes(PShape[] shapes) {
-		this.shapes = shapes;
-	}
-
 
 	
 	//End Of Class

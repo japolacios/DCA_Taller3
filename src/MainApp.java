@@ -29,7 +29,7 @@ public class MainApp extends PApplet {
 	public void setup() {
 		System.out.println("Initializing Logic");
 		logica = new Logica(this);
-		  leap = new LeapMotion(this);
+		//  leap = new LeapMotion(this);
 		// Check Logic its Live
 		if (logica != null) {
 			System.err.println("Logic Runing");
@@ -37,7 +37,7 @@ public class MainApp extends PApplet {
 			
 		}
 
-		
+		/*
 		// LEAP MOTION 
  for (Hand hand : leap.getHands ()) {
 		    int     handId             = hand.getId();
@@ -58,8 +58,9 @@ public class MainApp extends PApplet {
 
 			
 			
- }
+ }*/
 	}
+	
 
 	@Override
 	public void draw() {
@@ -69,7 +70,7 @@ public class MainApp extends PApplet {
 
 		// Call Logic Paint
 		logica.paint();
-		
+	/*
 		// leap motion 
 		for (Hand hand : leap.getHands ()) {
 	
@@ -80,11 +81,9 @@ public class MainApp extends PApplet {
 				
 				}
 		}
-		   
+		*/   
 	
 	}
-		 
-
 	// Program Runner
 	public static void main(String[] args) {
 		PApplet.main("MainApp");
@@ -110,7 +109,7 @@ public class MainApp extends PApplet {
 
 	@Override
 	public void mouseClicked() {
-		
+		logica.click();
 	}
 	
 	// End Class

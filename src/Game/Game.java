@@ -10,13 +10,19 @@ public class Game {
 	private int level;
 	private PApplet app;
 	//Relations
-	ArrayList<Level> levels;
+	Level cLevel;
 	Player player;
 	
 	
 	//Constructor
-	Game(PApplet _app){
+	public Game(PApplet _app){
 		app = _app;
 		level = 1;
+		player = new Player(app);
+		cLevel = new Level(app, level);
+	}
+	
+	public void paint(){
+		
 	}
 }
