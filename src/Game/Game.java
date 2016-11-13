@@ -24,7 +24,7 @@ public class Game implements Observer {
 		app = _app;
 		level = 1;
 		player = new Player(app);
-		impactZone = 150;
+		impactZone = 250;
 		newLevel();
 		background = app.loadImage("background.png");
 		System.out.println("Class Game Initialized");
@@ -36,18 +36,28 @@ public class Game implements Observer {
 		
 	}
 	
+	public Player getPlayer(){
+		if(player != null){
+			return player;
+		} else{
+			return null;
+		}
+	}
+	
+	
 	public void paint(){
 		paintBackground();
 		player.paint();
 		cLevel.paint();
 	}
 	
+	
 	public void paintBackground(){
 		app.imageMode(app.CENTER);
 		background.resize(app.width, app.height);
 		app.image(background, app.width/2, app.height/2);
 	}
-
+	//Recives event to create fire
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
@@ -65,7 +75,7 @@ public class Game implements Observer {
 			System.out.println("Checking Buildings");
 			if(app.dist(impactX, impactY, buildTemp.getX(), buildTemp.getY()) < impactZone){
 				System.out.println("Near Buildings Found");
-				cLevel.createFire(buildTemp.getX(), buildTemp.getY()+50);
+				buildTemp.createFire(buildTemp.getX(), buildTemp.getY()+50);
 			}
 		}
 		

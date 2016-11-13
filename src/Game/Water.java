@@ -13,34 +13,43 @@ public class Water extends Thread {
 	boolean hit;
 	
 	Water(int _x, int _y, PApplet _app){
-		
-		x=_x;
-		y=_y;
 		app = _app;
+		x=_x + change();
+		y=_y + change();
 		hit = false;
 		gravity = 1;
 		damage = 2;
-		cycles = 50;
+		cycles = 20;
 		
+	}
+	
+	public int change(){
+		int salida;
+		float temp;
+		temp = (int) app.random(-10, 10);
+		salida = (int)temp;
+		//System.out.println("RANDOM: "+ salida);
+		return salida;
 	}
 	
 	public void run(){
 		while(hit == false){
 			try{
-				fall();
-				if(cycles <= 0){
-					hit = true;
-				}
-				sleep(100);
+				sleep(5);
 			}
 			catch(Exception e){
 				e.printStackTrace();
 			}
-			
+			fall();
+			if(cycles <= 0){
+				hit = true;
+				
+			}			
 		}
 	}
 	
 	public void paint(){
+		app.fill(0,0,255);
 		app.ellipse(x, y, 5, 5);
 	}
 
@@ -48,16 +57,16 @@ public class Water extends Thread {
 		cycles--;
 		if(cycles>= 0){
 		x = x-(int)(cycles/3);
-		y = y++;
+		y = y + 5;
 		}
 	}
-	/*
+	
 	public void checkHit(int _x, int _y){
-		if (app.dist(x, y,_x, _y)<= 5){
+		if (app.dist(x, y,_x, _y)<= 10){
 			hit = true;
 		}
 	}
-	*/
+	
 	
 	/*****************************
 	 * Getters & Setters

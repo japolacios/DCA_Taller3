@@ -31,7 +31,7 @@ public class Player {
 	money = 0;
 	
 	buildings = new ArrayList<Building>();
-	
+	drops = new ArrayList<Thread>();
 	population = checkPopulation();
 	corn = checkCorn();
 	industry = checkIndustry();
@@ -40,7 +40,7 @@ public class Player {
 	
 	//Creates Initial Bouildings
 	createInitialBuildings();
-	
+	runBuildings();
 	System.out.println("Player Initialized");
 	}
 	
@@ -115,6 +115,8 @@ public class Player {
 			for (int i = 0; i < drops.size(); i++) {
 				if (((Water) drops.get(i)).isHit() == true){
 					drops.get(i).interrupt();
+					drops.remove(i);
+					System.out.println("Drop Interrupted");
 				} 
 			}
 		}
@@ -122,6 +124,16 @@ public class Player {
 	
 	public void paint(){
 		paintBuildings();
+		paintDrops();
+	}
+	
+	public void paintDrops(){
+		if(drops != null){
+			checkDrops();
+		for (int i = 0; i < drops.size(); i++) {
+			 ((Water) drops.get(i)).paint(); 
+		}
+	}
 	}
 	
 	public void paintBuildings(){
@@ -130,6 +142,19 @@ public class Player {
 		}
 	}
 	
+	public void runBuildings(){
+		System.out.println("Running Buildings");
+		for (int i = 0; i < buildings.size(); i++) {
+			buildings.get(i).start();
+		}
+	}
+	
+	public void addDrop(int _x,int _y){
+		Water dropTemp = new Water(_x, _y, app);
+		drops.add(dropTemp);
+		dropTemp.start();
+		
+	}
 	/******************
 	Getters & Setters 
 	 *****************/

@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 import Game.Game;
-
+import Game.Player;
 import de.voidplus.leapmotion.Finger;
 import de.voidplus.leapmotion.Hand;
 import de.voidplus.leapmotion.LeapMotion;
@@ -72,6 +72,15 @@ public class Logica {
 	public void click(){
 		if(pantalla == 0){
 			stageClick();
+		}
+	}
+	
+	public void rightClick(){
+		if (game != null){
+			if (game.getPlayer() != null){
+				Player playerTemp = game.getPlayer();
+				playerTemp.addDrop(app.mouseX, app.mouseY);
+			}
 		}
 	}
 	

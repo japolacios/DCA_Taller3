@@ -83,6 +83,10 @@ public class Level extends Observable implements Observer {
 		}
 		}
 	}
+	
+	public void moveMeteorite(){
+		//((Meteorite) meteorites.get(1)).
+	}
 
 	@Override
 	public void update(Observable o, Object arg) {
@@ -105,22 +109,9 @@ public class Level extends Observable implements Observer {
 				}
 		}
 		if (arg.equals("ground")){
-			int impactX, impactY;
-				Meteorite tempMeteorite = (Meteorite) o;
-				/*
-				impactX = tempMeteorite.getX();
-				impactY = tempMeteorite.getY();
-				
-
-				//Iniciar Fuegos con coordenadas del Impacto - Disminuir salud
-				  */
 				setChanged();
-				System.out.println("SetChanged");
 				notifyObservers(o);
-				System.out.println("Notifying");
 				clearChanged();
-				System.out.println("ClearChange");
-				System.out.println("Meteorite " + tempMeteorite.getIdM() + " hit ground");
 		}
 	}
 }

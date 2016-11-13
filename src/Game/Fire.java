@@ -4,7 +4,7 @@ import processing.core.PApplet;
 import processing.core.PImage;
 import processing.core.PShape;
 
-public class Fire  extends Thread{
+public class Fire extends Thread{
 	
 	//Atributes
 	private int x,y,damage,size,health,iImg;
@@ -12,10 +12,11 @@ public class Fire  extends Thread{
 	private PApplet app;
 	private PImage[] shapes;
 	
-	Fire(int _x, int _y, int _size, int _health, PApplet _app){
+	public Fire(int _x, int _y, int _size, int _health, PApplet _app){
 		
 		x=_x;
 		y=_y;
+		damage = 2;
 		size = _size;
 		health = _health;
 		app = _app;
