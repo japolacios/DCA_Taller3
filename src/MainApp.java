@@ -33,8 +33,6 @@ public class MainApp extends PApplet {
 		// Check Logic its Live
 		if (logica != null) {
 			System.err.println("Logic Runing");
-			
-			
 		}
 
 		/*
@@ -66,7 +64,7 @@ public class MainApp extends PApplet {
 	public void draw() {
 
 		// Set Background White
-		background(255, 255, 255);
+		//background(255, 255, 255);
 
 		// Call Logic Paint
 		logica.paint();

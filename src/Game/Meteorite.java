@@ -13,7 +13,7 @@ public class Meteorite extends Observable implements Runnable {
 	private float scale;
 	private PApplet app;
 	private PImage[] shapes;
-	
+	private boolean isGround, moved;
 	
 	//Constructor
 	Meteorite(PApplet _app,int _id){
@@ -25,43 +25,53 @@ public class Meteorite extends Observable implements Runnable {
 	public void run(){
 		while(true){
 			try{
-				Thread.sleep(10);
+				Thread.sleep(2);
 			}
 			catch(Exception e){
 				e.printStackTrace();
 			}
 			fall();
+			
 			//System.out.println(fallF);
-			paint();
+			if (moved == true){
+				setChanged();
+				notifyObservers("move");
+				//System.out.println("move");
+				clearChanged();	
+			}
 			if(health <= 0){
 				setChanged();
 				notifyObservers("dead");
 				clearChanged();
 			}
-			if(fallF <= 0){
+			if(fallF <= 0 && isGround == false){
 				setChanged();
 				notifyObservers("ground");
 				System.out.println("Hit ground on thread");
 				clearChanged();
+				isGround = true;
+				moved = false;
 			}
 			
 		}
 	}
 	
 	public void init(){
-		y = (int) (app.random(-500,-230));
-		x = (int) (app.random(80,1200));
+		y = (int) (app.random(-450,-100));
+		x = (int) (app.random(120,1100));
 		scale = 1;
 		fallF = 720;
 		health = 100;
+		isGround = false;
 		shapes = new PImage[2];
+		moved = true;
 		loadGraphics();
 		
 	}
 	
 	public void fall(){
 		if (fallF >= 0){
-			y--;
+			y++;
 			fallF--;
 		}
 	}
@@ -124,7 +134,7 @@ public class Meteorite extends Observable implements Runnable {
 		this.scale = scale;
 	}
 	
-	public int getId(){
+	public int getIdM(){
 		return id;
 	}
 

@@ -33,6 +33,7 @@ public class Logica {
 		if(pantalla == 0){
 			paintStage();
 		} else if(pantalla == 1){
+			app.background(255,255,255);
 			paintElements();
 		}
 		
