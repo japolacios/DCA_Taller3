@@ -53,8 +53,8 @@ public class Player {
 	}
 	
 	private void createInitialBuildings(){
-		House house1 = new House(400, 400, 1000, 1, 50, 1, casasImg, app);
-		Farm farm1 = new Farm(400, 400, 1000, 1, 50, 1, farmsImg, app);
+		House house1 = new House(300, 300, 1000, 1, 50, 1, casasImg, app);
+		Farm farm1 = new Farm(500, 300, 1000, 1, 50, 1, farmsImg, app);
 		
 		buildings.add(house1);
 		buildings.add(farm1);
@@ -117,6 +117,16 @@ public class Player {
 					drops.get(i).interrupt();
 				} 
 			}
+		}
+	}
+	
+	public void paint(){
+		paintBuildings();
+	}
+	
+	public void paintBuildings(){
+		for (int i = 0; i < buildings.size(); i++) {
+			buildings.get(i).paint();
 		}
 	}
 	

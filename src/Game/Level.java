@@ -8,7 +8,7 @@ import com.jogamp.common.util.RunnableExecutor.CurrentThreadExecutor;
 
 import processing.core.PApplet;
 
-public class Level extends Observable implements Observer, Runnable {
+public class Level extends Observable implements Observer {
 	
 	//Atributes
 	private int lvl;
@@ -26,6 +26,7 @@ public class Level extends Observable implements Observer, Runnable {
 		lvl = _lvl;
 		meteorites = new ArrayList<Thread>();
 		mMeteorites = new ArrayList<Meteorite>();
+		fires = new ArrayList<Fire>();
 		setLvlDificulty();
 		runMeteorites();
 		
@@ -66,15 +67,22 @@ public class Level extends Observable implements Observer, Runnable {
 
 	public void paint(){
 		paintMeteorite();
-		
+		paintFire();
 	}
 	
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
+	public void createFire(int _x, int _y){
+		Fire fireTemp = new Fire(_x, _y+50, 100, 100, app);
+		fires.add(fireTemp);
+		fireTemp.start();
 	}
-
+	
+	public void paintFire(){
+		if(fires != null){
+		for (int i = 0; i < fires.size(); i++) {
+			fires.get(i).paint();
+		}
+		}
+	}
 
 	@Override
 	public void update(Observable o, Object arg) {
@@ -99,11 +107,20 @@ public class Level extends Observable implements Observer, Runnable {
 		if (arg.equals("ground")){
 			int impactX, impactY;
 				Meteorite tempMeteorite = (Meteorite) o;
+				/*
 				impactX = tempMeteorite.getX();
 				impactY = tempMeteorite.getY();
 				
-				System.out.println("Meteorite " + tempMeteorite.getIdM() + " hit ground");
+
 				//Iniciar Fuegos con coordenadas del Impacto - Disminuir salud
+				  */
+				setChanged();
+				System.out.println("SetChanged");
+				notifyObservers(o);
+				System.out.println("Notifying");
+				clearChanged();
+				System.out.println("ClearChange");
+				System.out.println("Meteorite " + tempMeteorite.getIdM() + " hit ground");
 		}
 	}
 }

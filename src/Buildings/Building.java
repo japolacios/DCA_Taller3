@@ -26,4 +26,16 @@ public abstract class Building extends Thread{
 		return production;
 	}
 
+	public void paint(){
+		app.imageMode(app.CENTER);
+		app.image(shape[0], x, y);
+	}
+	
+	public int getX(){
+		return x;
+	}
+	
+	public int getY(){
+		return y;
+	}
 }
