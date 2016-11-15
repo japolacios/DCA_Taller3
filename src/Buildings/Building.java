@@ -61,11 +61,22 @@ public abstract class Building extends Thread{
 			if(fire != null && fire.getHealth()>=0 && health > 0){
 			health = health - fire.getDamage();
 			}
+			
+			if (fire != null && fire.getHealth()<= 0){
+				fire.interrupt();
+				fire = null;
+			}
 			if(health<= 0){
 			//	System.out.println("Building Burned  -  " + health);
 			}
 		}
 		
+	}
+	
+	
+	
+	public Fire giveFire(){
+		return fire;
 	}
 	
 	public int getX(){

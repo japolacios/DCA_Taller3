@@ -70,7 +70,10 @@ public class Fire extends Thread{
 		}
 	}
 
-
+	public void reciveDamage(){
+		health = health - damage;
+	}
+	
 	/*****************************
 	 * Getters & Setters
 	 ****************************/

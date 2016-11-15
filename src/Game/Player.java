@@ -113,6 +113,17 @@ public class Player {
 	public void checkDrops(){
 		if(drops != null){
 			for (int i = 0; i < drops.size(); i++) {
+				for (int j = 0; j < buildings.size(); j++) {
+					if(buildings.get(j).giveFire() != null){
+					if(app.dist(buildings.get(j).giveFire().getX(), buildings.get(j).giveFire().getY(),
+							((Water) drops.get(i)).getX(), ((Water) drops.get(i)).getY())<= 30){
+						buildings.get(j).giveFire().reciveDamage();
+						drops.get(i).interrupt();
+						drops.remove(i);
+					}
+					}
+				}
+				
 				if (((Water) drops.get(i)).isHit() == true){
 					drops.get(i).interrupt();
 					drops.remove(i);
