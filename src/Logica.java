@@ -73,6 +73,7 @@ public class Logica {
 		if(pantalla == 0){
 			stageClick();
 		}
+		
 	}
 	
 	public void rightClick(){
@@ -85,15 +86,27 @@ public class Logica {
 	}
 	
 	public void press() {
-
+		if (pantalla == 1){
+			if(game != null){
+			game.getLevel().selectMeteorite();
+			}	
+		}
 	}
 
 	public void drag() {
-
+		if (pantalla == 1){
+			if(game != null){
+			game.getLevel().dragMeteorite();
+			}	
+		}
 	}
 
 	public void release() {
-
+		if (pantalla == 1){
+			if(game != null){
+			game.getLevel().releaseMeteorite();
+			}	
+		}
 	}
 
 	public void keyPressed() {

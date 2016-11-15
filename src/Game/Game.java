@@ -57,6 +57,10 @@ public class Game implements Observer {
 		background.resize(app.width, app.height);
 		app.image(background, app.width/2, app.height/2);
 	}
+	
+	public Level getLevel(){
+		return cLevel;
+	}
 	//Recives event to create fire
 	@Override
 	public void update(Observable o, Object arg) {

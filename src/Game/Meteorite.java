@@ -9,11 +9,11 @@ import processing.core.PShape;
 public class Meteorite extends Observable implements Runnable {
 	
 	//Atributes
-	private int x,y,damage,fallF,health,id;
+	private int x,y,damage,fallF,health,id, ground;
 	private float scale;
 	private PApplet app;
 	private PImage[] shapes;
-	private boolean isGround, moved;
+	private boolean isGround, moved, selected;
 	
 	//Constructor
 	Meteorite(PApplet _app,int _id){
@@ -65,15 +65,21 @@ public class Meteorite extends Observable implements Runnable {
 		isGround = false;
 		shapes = new PImage[2];
 		moved = true;
+		selected = false;
+		ground = y + 720;
 		loadGraphics();
 		
 	}
 	
 	public void fall(){
-		if (fallF >= 0){
+		if (fallF >= 0 && isGround == false){
 			y++;
 			fallF--;
 		}
+		if (isGround == true && y <= ground && selected == false){
+			y++;
+		}
+		
 	}
 	
 	public void loadGraphics(){
@@ -89,9 +95,27 @@ public class Meteorite extends Observable implements Runnable {
 		
 	}
 	
+	public void move(int _x,int _y){
+		x = _x;
+		y = _y;
+	}
+	
 	/**************************************
 	 * Getters & Setters
 	 *************************************/
+	
+	public boolean getSelected(){
+		return selected;
+	}
+	
+	public void setSelected(){
+		if(selected == false){
+			selected = true;
+		}
+		if (selected == true){
+			selected = false;
+		}
+	}
 	
 	public int getX() {
 		return x;

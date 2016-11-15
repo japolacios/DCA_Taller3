@@ -116,7 +116,7 @@ public class Player {
 				if (((Water) drops.get(i)).isHit() == true){
 					drops.get(i).interrupt();
 					drops.remove(i);
-					System.out.println("Drop Interrupted");
+				//	System.out.println("Drop Interrupted");
 				} 
 			}
 		}

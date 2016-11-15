@@ -89,10 +89,11 @@ public class MainApp extends PApplet {
 
 	public void mousePressed() {
 		logica.press();
+		
 		if (mouseButton == RIGHT) {
 			
 			logica.rightClick();
-			System.out.println("Click Derecho");
+			//System.out.println("Click Derecho");
 			
 		}
 	}
@@ -105,7 +106,7 @@ public class MainApp extends PApplet {
 	@Override
 	public void mouseDragged() {
 		logica.drag();
-if (mouseButton == RIGHT) {
+		if (mouseButton == RIGHT) {
 			
 			logica.rightClick();
 			System.out.println("Click Derecho");
