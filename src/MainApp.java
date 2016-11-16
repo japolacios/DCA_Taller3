@@ -117,7 +117,7 @@ public class MainApp extends PApplet {
 		if (mouseButton == RIGHT) {
 			
 			logica.rightClick();
-			System.out.println("Click Derecho");
+		//	System.out.println("Click Derecho");
 			
 		}
 	}

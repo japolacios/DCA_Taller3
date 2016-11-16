@@ -42,14 +42,29 @@ public class Level extends Observable implements Observer {
 	}
 
 	public void setLvlDificulty() {
-		if (lvl <= 200) {
+		if (lvl == 0) {
 			for (int i = 0; i < 1; i++) {
 				Meteorite tempMeteorite = new Meteorite(app, i);
 				tempMeteorite.addObserver(this);
 				meteorites.add(tempMeteorite);
 				System.out.println("Meteorite " + i + " initialized");
 			}
-
+		}
+		if (lvl == 1) {
+			for (int i = 0; i < 2; i++) {
+				Meteorite tempMeteorite = new Meteorite(app, i);
+				tempMeteorite.addObserver(this);
+				meteorites.add(tempMeteorite);
+				System.out.println("Meteorite " + i + " initialized");
+			}
+		}
+		if (lvl == 2) {
+			for (int i = 0; i < 3; i++) {
+				Meteorite tempMeteorite = new Meteorite(app, i);
+				tempMeteorite.addObserver(this);
+				meteorites.add(tempMeteorite);
+				System.out.println("Meteorite " + i + " initialized");
+			}
 		}
 	}
 	
@@ -85,6 +100,7 @@ public class Level extends Observable implements Observer {
 	public void paint() {
 		paintMeteorite();
 		paintFire();
+		checkComplete();
 	}
 
 	public void createFire(int _x, int _y) {
@@ -133,10 +149,27 @@ public class Level extends Observable implements Observer {
 			selectedM = null;
 		}
 	}
+	
+	public void setNumOfFires(int _n){
+		numOfBuildingFires = _n;
+	}
 
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
+		
+		if (arg.equals("dead")) {
+			int id;
+			Meteorite tempMeteorite = (Meteorite) o;
+			id = tempMeteorite.getIdM();
+			for (int i = 0; i < meteorites.size(); i++) {
+				if (meteorites.get(i).getIdM() == id) {
+					meteorites.remove(i);
+				}
+				
+			}
+		}
+		
 		if (arg.equals("move")) {
 			// System.out.println("Got move");
 			int newX, newY, id;

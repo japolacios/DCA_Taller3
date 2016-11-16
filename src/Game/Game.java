@@ -13,7 +13,8 @@ public class Game implements Observer {
 	//Atributes
 	private int level, impactZone;
 	private PApplet app;
-	private PImage background;
+	private PImage background, trash;
+	private boolean winGame = false;
 	//Relations
 	Level cLevel;
 	Player player;
@@ -22,19 +23,22 @@ public class Game implements Observer {
 	//Constructor
 	public Game(PApplet _app){
 		app = _app;
-		level = 1;
+		level = 0;
 		player = new Player(app);
 		impactZone = 250;
-		newLevel();
+		newLevel(level);
 		background = app.loadImage("background.png");
+		trash = app.loadImage("trash.png");
 		System.out.println("Class Game Initialized");
 	}
 	
-	public void newLevel(){
-		cLevel = new Level(app, level);
+	public void newLevel(int _lvl){
+		cLevel = new Level(app, _lvl);
 		cLevel.addObserver(this);
 		
 	}
+	
+	
 	
 	public Player getPlayer(){
 		if(player != null){
@@ -44,13 +48,47 @@ public class Game implements Observer {
 		}
 	}
 	
+	public void getPlayerLevel(){
+		 if(level > 3){
+			cLevel = null;
+			winGame = true;
+		}
+	}
+	
+	public void  passActiveFires(){
+		cLevel.setNumOfFires( player.countFires() );
+	}
 	
 	public void paint(){
+		if(winGame == false){
 		paintBackground();
 		player.paint();
 		cLevel.paint();
+		paintTrash();
+		passActiveFires();
+		getPlayerLevel();
+		} else if (winGame == true ){
+			
+			
+			//-----------------------------
+			//CUANDO EL JUGADOR HA PASADO LOS 3 NIVELES
+			//------------------------------
+			
+			
+		}
 	}
 	
+	public void paintTrash(){
+		app.imageMode(app.CENTER);
+		app.image(trash, 15, 360);
+	}
+	
+	public void levelManager(){
+		if(cLevel != null){
+			cLevel = null;
+			newLevel(level);
+		}
+	}
 	
 	public void paintBackground(){
 		app.imageMode(app.CENTER);
@@ -64,6 +102,13 @@ public class Game implements Observer {
 	//Recives event to create fire
 	@Override
 	public void update(Observable o, Object arg) {
+		
+		
+		if (arg.equals("done")){
+			level++;
+			levelManager();
+			System.out.println("Done");
+		} else {
 		// TODO Auto-generated method stub
 		System.out.println("Impact Recived");
 		
@@ -81,6 +126,7 @@ public class Game implements Observer {
 				System.out.println("Near Buildings Found");
 				buildTemp.createFire(buildTemp.getX(), buildTemp.getY()+50);
 			}
+		}
 		}
 		
 	}
