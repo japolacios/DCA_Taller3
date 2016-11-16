@@ -114,7 +114,7 @@ public class Player {
 		if(drops != null){
 			for (int i = 0; i < drops.size(); i++) {
 				for (int j = 0; j < buildings.size(); j++) {
-					if(buildings.get(j).giveFire() != null){
+					if(buildings.get(j).giveFire() != null && drops.get(i)!= null){
 					if(app.dist(buildings.get(j).giveFire().getX(), buildings.get(j).giveFire().getY(),
 							((Water) drops.get(i)).getX(), ((Water) drops.get(i)).getY())<= 30){
 						buildings.get(j).giveFire().reciveDamage();
@@ -123,12 +123,15 @@ public class Player {
 					}
 					}
 				}
-				
+				}
+			for(int i = 0; i < drops.size(); i++) {
+			if ( drops.get(i)!= null){
 				if (((Water) drops.get(i)).isHit() == true){
 					drops.get(i).interrupt();
 					drops.remove(i);
 				//	System.out.println("Drop Interrupted");
 				} 
+			}
 			}
 		}
 	}
@@ -150,6 +153,9 @@ public class Player {
 	public void paintBuildings(){
 		for (int i = 0; i < buildings.size(); i++) {
 			buildings.get(i).paint();
+			if(buildings.get(i).getHealth()<= 0){
+				buildings.remove(i);
+			}
 		}
 	}
 	

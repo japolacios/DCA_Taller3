@@ -109,6 +109,9 @@ public class Meteorite extends Observable implements Runnable {
 	}
 	
 	public void setSelected(){
+		
+		
+		
 		if(selected == false){
 			selected = true;
 		}

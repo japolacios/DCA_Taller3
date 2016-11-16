@@ -40,6 +40,7 @@ public abstract class Building extends Thread{
 		app.imageMode(app.CENTER);
 		app.image(shape[0], x, y);
 		paintFire();
+		paintHealth();
 	}
 	
 	public void paintFire(){
@@ -73,7 +74,12 @@ public abstract class Building extends Thread{
 		
 	}
 	
-	
+	public void paintHealth(){
+		app.fill(0,255,0);
+		if (health >= 0){
+		app.rect(x-((health/10)/4), y-100, health/10, 20);
+		}
+	}
 	
 	public Fire giveFire(){
 		return fire;
@@ -85,6 +91,10 @@ public abstract class Building extends Thread{
 	
 	public int getY(){
 		return y;
+	}
+	
+	public int getHealth(){
+		return health;
 	}
 	
 }

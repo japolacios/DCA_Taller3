@@ -54,6 +54,7 @@ public class Fire extends Thread{
 		//scaleFire();
 		app.imageMode(app.CENTER);
 		app.image(shapes[iImg], x, y-50);
+		paintHealth();
 	}
 	
 	public void run(){
@@ -72,6 +73,13 @@ public class Fire extends Thread{
 
 	public void reciveDamage(){
 		health = health - damage;
+	}
+	
+	public void paintHealth(){
+		app.fill(255,0,0);
+		if (health >= 0){
+		app.rect(x-(health/4), y-50, health/2, 5);
+		}
 	}
 	
 	/*****************************

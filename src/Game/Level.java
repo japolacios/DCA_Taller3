@@ -11,7 +11,7 @@ import processing.core.PApplet;
 public class Level extends Observable implements Observer {
 
 	// Atributes
-	private int lvl;
+	private int lvl, numOfBuildingFires;
 	private PApplet app;
 	private boolean lvlCompleted;
 
@@ -44,7 +44,18 @@ public class Level extends Observable implements Observer {
 
 		}
 	}
-
+	
+	public void checkComplete(){
+		
+		if(meteorites == null || meteorites.size() <= 0){
+			if (numOfBuildingFires <= 0) {
+				setChanged();
+				notifyObservers("done");
+				clearChanged();
+			}
+		}
+		
+	}
 	public void runMeteorites() {
 		for (int i = 0; i < meteorites.size(); i++) {
 			Thread threadTemp = new Thread(meteorites.get(i));
@@ -77,13 +88,18 @@ public class Level extends Observable implements Observer {
 	public void paintFire() {
 		if (fires != null) {
 			for (int i = 0; i < fires.size(); i++) {
+				fires.get(i).reciveDamage();
 				fires.get(i).paint();
+				if(fires.get(i).getHealth()<= 0){
+					fires.remove(i);
+				}
 			}
 		}
 	}
 
 	public void selectMeteorite() {
 		if (selectedM == null) {
+			
 			for (int i = 0; i < meteorites.size(); i++) {
 
 				if (app.dist(meteorites.get(i).getX(), meteorites.get(i).getY(), app.mouseX, app.mouseY) <= 30) {
