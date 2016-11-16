@@ -19,7 +19,8 @@ public class Stage {
 	}
 
 	public void pintar() {
-		// System.out.println("mx: "+app.mouseX+" "+"my: "+app.mouseY+" "+"cont: "+contador+" "+"zona: "+zonaSensible+" "+"pant: "+pantalla);
+		// System.out.println("mx: "+app.mouseX+" "+"my: "+app.mouseY+" "+"cont:
+		// "+contador+" "+"zona: "+zonaSensible+" "+"pant: "+pantalla);
 		switch (pantalla) {
 		// PANTALLA INICIAL
 		case 0:
@@ -65,7 +66,7 @@ public class Stage {
 		// INSTRUCCIONES
 		case 1:
 			app.image(instru, 0, 0);
-			
+
 			if (app.mouseX > 510 && app.mouseX < 720 && app.mouseY > 25 && app.mouseY < 85) {
 				app.fill(255, 119, 0);
 				app.rect(510, 25, 260, 60, 7);
@@ -79,7 +80,7 @@ public class Stage {
 				app.textSize(32);
 				app.text("Jugar", 592, 60);
 			}
-			
+
 			break;
 		// IN GAME
 		case 2:
