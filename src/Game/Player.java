@@ -24,7 +24,8 @@ public class Player {
 	//ImageList
 	PImage[] casasImg;
 	PImage[] farmsImg;
-	
+	PImage hud;
+	PImage casasImg3;
 	//Relations
 	Water water;
 	ArrayList<Building> buildings;
@@ -52,19 +53,27 @@ public class Player {
 	}
 	
 	private void loadShapes(){
-		casasImg = new PImage[2];
+		casasImg = new PImage[3];
 		casasImg[0] =  app.loadImage("casa1.png");
-		
+		casasImg[1] = app.loadImage("casa2.png");
+		casasImg3 = app.loadImage("casa3.png");
 		farmsImg = new PImage[2];
 		farmsImg[0] = app.loadImage("trigo.png");
+		hud = app.loadImage("hug.png");
 	}
 	
 	private void createInitialBuildings(){
+		int silo = 2;
 		House house1 = new House(300, 300, 1000, 1, 50, 1, casasImg, app);
 		Farm farm1 = new Farm(500, 300, 1000, 1, 50, 1, farmsImg, app);
+<<<<<<< HEAD
 		House house2 = new House(1000, 500, 1000, 1, 50, 1, casasImg, app);
 		Farm farm2 = new Farm(800, 600, 1000, 1, 50, 1, farmsImg, app);
 		
+=======
+		//Silo silos = new Silo(700, 300, 1500, 1, 50, 1, casasImg3, app);
+		//buildings.add(silos);
+>>>>>>> 7525090174c93aa08e9b9b24cd5e5fcb37b8c4a6
 		buildings.add(house1);
 		buildings.add(farm1);
 		buildings.add(house2);
