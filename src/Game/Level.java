@@ -150,6 +150,9 @@ public class Level extends Observable implements Observer {
 		}
 	}
 	
+	public Meteorite getSelectedMeteorite(){
+		return selectedM;
+	}
 	public void setNumOfFires(int _n){
 		numOfBuildingFires = _n;
 	}
