@@ -6,14 +6,18 @@ import java.util.Observer;
 
 import com.jogamp.common.util.RunnableExecutor.CurrentThreadExecutor;
 
+import ddf.minim.AudioSample;
+import ddf.minim.Minim;
 import processing.core.PApplet;
 
 public class Level extends Observable implements Observer {
 
 	// Atributes
-	private int lvl;
+	private int lvl, numOfBuildingFires;
 	private PApplet app;
 	private boolean lvlCompleted;
+	private Minim minim;
+	private AudioSample boom;
 
 	// Relations
 	Meteorite selectedM;
@@ -28,8 +32,12 @@ public class Level extends Observable implements Observer {
 		meteorites = new ArrayList<Meteorite>();
 		fires = new ArrayList<Fire>();
 		setLvlDificulty();
+		
+		minim = new Minim(app);
+		boom = minim.loadSample("../data/fx/explosion_audio.mp3", 512);
+		
 		runMeteorites();
-
+		
 		System.out.println("Level Initialized");
 	}
 
@@ -44,7 +52,18 @@ public class Level extends Observable implements Observer {
 
 		}
 	}
-
+	
+	public void checkComplete(){
+		
+		if(meteorites == null || meteorites.size() <= 0){
+			if (numOfBuildingFires <= 0) {
+				setChanged();
+				notifyObservers("done");
+				clearChanged();
+			}
+		}
+		
+	}
 	public void runMeteorites() {
 		for (int i = 0; i < meteorites.size(); i++) {
 			Thread threadTemp = new Thread(meteorites.get(i));
@@ -77,13 +96,18 @@ public class Level extends Observable implements Observer {
 	public void paintFire() {
 		if (fires != null) {
 			for (int i = 0; i < fires.size(); i++) {
+				fires.get(i).reciveDamage();
 				fires.get(i).paint();
+				if(fires.get(i).getHealth()<= 0){
+					fires.remove(i);
+				}
 			}
 		}
 	}
 
 	public void selectMeteorite() {
 		if (selectedM == null) {
+			
 			for (int i = 0; i < meteorites.size(); i++) {
 
 				if (app.dist(meteorites.get(i).getX(), meteorites.get(i).getY(), app.mouseX, app.mouseY) <= 30) {
@@ -133,6 +157,7 @@ public class Level extends Observable implements Observer {
 		}
 		if (arg.equals("ground")) {
 			setChanged();
+			boom.trigger();
 			notifyObservers(o);
 			clearChanged();
 		}

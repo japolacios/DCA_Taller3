@@ -1,3 +1,5 @@
+import ddf.minim.AudioPlayer;
+import ddf.minim.Minim;
 import de.voidplus.leapmotion.Arm;
 import de.voidplus.leapmotion.Finger;
 import de.voidplus.leapmotion.Hand;
@@ -10,6 +12,9 @@ public class MainApp extends PApplet {
 	// Relations
 	Logica logica;
 	LeapMotion leap;
+	Minim minim;
+	AudioPlayer song;
+	
 
 	@Override
 	public void settings() {
@@ -31,6 +36,9 @@ public class MainApp extends PApplet {
 		// leap = new LeapMotion(this);
 		// Check Logic its Live
 		if (logica != null) {
+			minim = new Minim(this);
+			song = minim.loadFile("../data/fx/bg_sound.mp3",512);
+			song.play();
 			System.err.println("Logic Runing");
 		}
 

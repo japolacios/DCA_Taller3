@@ -5,6 +5,8 @@ import Buildings.Building;
 import Buildings.Farm;
 import Buildings.House;
 import Buildings.Silo;
+import ddf.minim.AudioSample;
+import ddf.minim.Minim;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -15,6 +17,8 @@ public class Player {
 	private int population;
 	private int corn;
 	private int industry;
+	private Minim minim;
+	private AudioSample dropS;
 	
 	//ImageList
 	PImage[] casasImg;
@@ -36,6 +40,8 @@ public class Player {
 	population = checkPopulation();
 	corn = checkCorn();
 	industry = checkIndustry();
+	minim = new Minim(app);
+	dropS = minim.loadSample("../data/fx/drop_audio.mp3", 512);
 	//Creates Arrays For Image Files and Loads images in to them
 	loadShapes();
 	
@@ -106,9 +112,9 @@ public class Player {
 		Water tempDrop = new Water(app.mouseX,app.mouseY,app);
 		Thread tempThread = new Thread(tempDrop);
 		drops.add(tempThread);
-		
 		if(drops != null){
 			for (int i = 0; i < drops.size(); i++) {
+				
 			 drops.get(i).run();
 			}
 		}
@@ -119,7 +125,7 @@ public class Player {
 		if(drops != null){
 			for (int i = 0; i < drops.size(); i++) {
 				for (int j = 0; j < buildings.size(); j++) {
-					if(buildings.get(j).giveFire() != null){
+					if(buildings.get(j).giveFire() != null && drops.get(i)!= null){
 					if(app.dist(buildings.get(j).giveFire().getX(), buildings.get(j).giveFire().getY(),
 							((Water) drops.get(i)).getX(), ((Water) drops.get(i)).getY())<= 30){
 						buildings.get(j).giveFire().reciveDamage();
@@ -128,12 +134,15 @@ public class Player {
 					}
 					}
 				}
-				
+				}
+			for(int i = 0; i < drops.size(); i++) {
+			if ( drops.get(i)!= null){
 				if (((Water) drops.get(i)).isHit() == true){
 					drops.get(i).interrupt();
 					drops.remove(i);
 				//	System.out.println("Drop Interrupted");
 				} 
+			}
 			}
 		}
 	}
@@ -155,6 +164,9 @@ public class Player {
 	public void paintBuildings(){
 		for (int i = 0; i < buildings.size(); i++) {
 			buildings.get(i).paint();
+			if(buildings.get(i).getHealth()<= 0){
+				buildings.remove(i);
+			}
 		}
 	}
 	
@@ -168,6 +180,7 @@ public class Player {
 	public void addDrop(int _x,int _y){
 		Water dropTemp = new Water(_x, _y, app);
 		drops.add(dropTemp);
+		dropS.trigger();
 		dropTemp.start();
 		
 	}

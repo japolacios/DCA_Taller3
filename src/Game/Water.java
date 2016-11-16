@@ -18,7 +18,7 @@ public class Water extends Thread {
 		y=_y + change();
 		hit = false;
 		gravity = 1;
-		damage = 2;
+		damage = 8;
 		cycles = 20;
 		
 	}
@@ -45,6 +45,8 @@ public class Water extends Thread {
 				hit = true;
 				
 			}			
+		}if (hit==true) {
+			interrupt();
 		}
 	}
 	
