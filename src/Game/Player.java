@@ -66,14 +66,14 @@ public class Player {
 		int silo = 2;
 		House house1 = new House(300, 300, 1000, 1, 50, 1, casasImg, app);
 		Farm farm1 = new Farm(500, 300, 1000, 1, 50, 1, farmsImg, app);
-<<<<<<< HEAD
+
 		House house2 = new House(1000, 500, 1000, 1, 50, 1, casasImg, app);
 		Farm farm2 = new Farm(800, 600, 1000, 1, 50, 1, farmsImg, app);
 		
-=======
+
 		//Silo silos = new Silo(700, 300, 1500, 1, 50, 1, casasImg3, app);
 		//buildings.add(silos);
->>>>>>> 7525090174c93aa08e9b9b24cd5e5fcb37b8c4a6
+
 		buildings.add(house1);
 		buildings.add(farm1);
 		buildings.add(house2);
