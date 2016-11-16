@@ -2,9 +2,10 @@ package Game;
 
 import java.util.Observable;
 
+
 import processing.core.PApplet;
 import processing.core.PImage;
-import processing.core.PShape;
+
 
 public class Meteorite extends Observable implements Runnable {
 	
@@ -14,6 +15,7 @@ public class Meteorite extends Observable implements Runnable {
 	private PApplet app;
 	private PImage[] shapes;
 	private boolean isGround, moved, selected;
+
 	
 	//Constructor
 	Meteorite(PApplet _app,int _id){

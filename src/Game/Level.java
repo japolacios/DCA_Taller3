@@ -6,6 +6,8 @@ import java.util.Observer;
 
 import com.jogamp.common.util.RunnableExecutor.CurrentThreadExecutor;
 
+import ddf.minim.AudioSample;
+import ddf.minim.Minim;
 import processing.core.PApplet;
 
 public class Level extends Observable implements Observer {
@@ -14,6 +16,8 @@ public class Level extends Observable implements Observer {
 	private int lvl, numOfBuildingFires;
 	private PApplet app;
 	private boolean lvlCompleted;
+	private Minim minim;
+	private AudioSample boom;
 
 	// Relations
 	Meteorite selectedM;
@@ -28,8 +32,12 @@ public class Level extends Observable implements Observer {
 		meteorites = new ArrayList<Meteorite>();
 		fires = new ArrayList<Fire>();
 		setLvlDificulty();
+		
+		minim = new Minim(app);
+		boom = minim.loadSample("../data/fx/explosion_audio.mp3", 512);
+		
 		runMeteorites();
-
+		
 		System.out.println("Level Initialized");
 	}
 
@@ -149,6 +157,7 @@ public class Level extends Observable implements Observer {
 		}
 		if (arg.equals("ground")) {
 			setChanged();
+			boom.trigger();
 			notifyObservers(o);
 			clearChanged();
 		}

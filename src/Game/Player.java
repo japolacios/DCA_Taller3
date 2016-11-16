@@ -5,6 +5,8 @@ import Buildings.Building;
 import Buildings.Farm;
 import Buildings.House;
 import Buildings.Silo;
+import ddf.minim.AudioSample;
+import ddf.minim.Minim;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -15,6 +17,8 @@ public class Player {
 	private int population;
 	private int corn;
 	private int industry;
+	private Minim minim;
+	private AudioSample dropS;
 	
 	//ImageList
 	PImage[] casasImg;
@@ -35,6 +39,8 @@ public class Player {
 	population = checkPopulation();
 	corn = checkCorn();
 	industry = checkIndustry();
+	minim = new Minim(app);
+	dropS = minim.loadSample("../data/fx/drop_audio.mp3", 512);
 	//Creates Arrays For Image Files and Loads images in to them
 	loadShapes();
 	
@@ -101,9 +107,9 @@ public class Player {
 		Water tempDrop = new Water(app.mouseX,app.mouseY,app);
 		Thread tempThread = new Thread(tempDrop);
 		drops.add(tempThread);
-		
 		if(drops != null){
 			for (int i = 0; i < drops.size(); i++) {
+				
 			 drops.get(i).run();
 			}
 		}
@@ -169,6 +175,7 @@ public class Player {
 	public void addDrop(int _x,int _y){
 		Water dropTemp = new Water(_x, _y, app);
 		drops.add(dropTemp);
+		dropS.trigger();
 		dropTemp.start();
 		
 	}

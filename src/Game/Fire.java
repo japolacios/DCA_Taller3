@@ -16,7 +16,7 @@ public class Fire extends Thread{
 		
 		x=_x;
 		y=_y;
-		damage = 2;
+		damage = 1;
 		size = _size;
 		health = _health;
 		app = _app;
