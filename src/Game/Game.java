@@ -14,7 +14,7 @@ public class Game implements Observer {
 	private int level, impactZone;
 	private PApplet app;
 	private PImage background, reloadBackground, trash;
-	private boolean winGame = false;
+	private boolean winGame = false, impacto;
 	// Relations
 	Level cLevel;
 	Player player;
@@ -66,7 +66,7 @@ public class Game implements Observer {
 			paintTrash();
 			passActiveFires();
 			getPlayerLevel();
-			System.out.println(background.width+" "+background.height);
+			//System.out.println(background.width+" "+background.height);
 		} else if (winGame == true) {
 
 			// -----------------------------

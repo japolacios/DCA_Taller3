@@ -14,7 +14,7 @@ public class Meteorite extends Observable implements Runnable {
 	private float scale;
 	private PApplet app;
 	private PImage[] shapes;
-	private boolean isGround, moved, selected;
+	private boolean isGround, moved, selected, impacto = false;
 
 	
 	//Constructor
@@ -52,6 +52,7 @@ public class Meteorite extends Observable implements Runnable {
 				System.out.println("Hit ground on thread");
 				clearChanged();
 				isGround = true;
+				impacto = true;
 				moved = false;
 			}
 			
@@ -166,6 +167,16 @@ public class Meteorite extends Observable implements Runnable {
 	public int getIdM(){
 		return id;
 	}
+
+	public boolean isImpacto() {
+		return impacto;
+	}
+
+	public void setImpacto(boolean impacto) {
+		this.impacto = impacto;
+	}
+	
+	
 
 	
 	//End Of Class
