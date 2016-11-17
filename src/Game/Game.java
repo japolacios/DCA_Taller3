@@ -66,19 +66,29 @@ public class Game implements Observer {
 			paintTrash();
 			passActiveFires();
 			getPlayerLevel();
+			
+			if(player.buildings == null || player.buildings.size() == 0){
+				paintBackground();
+				app.textMode(app.CENTER);
+				app.textSize(30);
+				app.text("Game Over", app.width/4, app.height/2);
+			}
 			//System.out.println(background.width+" "+background.height);
 		} else if (winGame == true) {
 
 			// -----------------------------
 			// CUANDO EL JUGADOR HA PASADO LOS 3 NIVELES
 			// ------------------------------
-
+			paintBackground();
+			app.textMode(app.CENTER);
+			app.textSize(30);
+			app.text("Has Salvado las Cosechas", app.width/4, app.height/2);
 		}
 	}
 
 	public void paintTrash() {
 		app.imageMode(app.CENTER);
-		app.image(trash, 70, 80);
+		app.image(trash, 20, 420 );
 	}
 
 	public void levelManager() {
