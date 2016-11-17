@@ -106,8 +106,10 @@ public class Logica {
 	public void release() {
 		if (pantalla == 1){
 			if(game != null){
+				if(game.getLevel().getSelectedMeteorite() != null){
 			game.getLevel().releaseMeteorite();
 			}	
+			}
 		}
 	}
 

@@ -5,9 +5,12 @@ import java.util.Observable;
 import java.util.Observer;
 
 import com.jogamp.common.util.RunnableExecutor.CurrentThreadExecutor;
+import com.leapmotion.leap.Leap;
 
 import ddf.minim.AudioSample;
 import ddf.minim.Minim;
+import de.voidplus.leapmotion.Hand;
+import de.voidplus.leapmotion.LeapMotion;
 import processing.core.PApplet;
 
 public class Level extends Observable implements Observer {
@@ -18,6 +21,7 @@ public class Level extends Observable implements Observer {
 	private boolean lvlCompleted;
 	private Minim minim;
 	private AudioSample boom;
+	private LeapMotion leap;
 
 	// Relations
 	Meteorite selectedM;
@@ -125,14 +129,17 @@ public class Level extends Observable implements Observer {
 		if (selectedM == null) {
 			
 			for (int i = 0; i < meteorites.size(); i++) {
-
-				if (app.dist(meteorites.get(i).getX(), meteorites.get(i).getY(), app.mouseX, app.mouseY) <= 30) {
+				 for (Hand hand : leap.getHands ()) {
+				if (app.dist(meteorites.get(i).getX(), meteorites.get(i).getY(), app.mouseX, app.mouseY) <= 30 || 
+						hand.getPinchStrength() >= 0.7 && app.dist(meteorites.get(i).getX(), meteorites.get(i).getY(), 
+								hand.getFinger(1).getPosition().x, hand.getFinger(1).getPosition().y) <= 50) {
 
 					if (meteorites.get(i).getSelected() == false) {
 						selectedM = meteorites.get(i);
 						selectedM.setSelected();
 					}
 				}
+			}
 			}
 		}
 	}
@@ -197,5 +204,17 @@ public class Level extends Observable implements Observer {
 			notifyObservers(o);
 			clearChanged();
 		}
+	}
+	
+	public ArrayList<Meteorite> sendMeteorites(){
+		if(meteorites != null){
+			return meteorites;
+		}else {
+			return null;
+		}
+	}
+	
+	public void reciveLeap(LeapMotion _leap){
+		leap = _leap;
 	}
 }

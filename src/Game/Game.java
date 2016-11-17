@@ -164,5 +164,14 @@ public class Game implements Observer {
 		reloadBackground.updatePixels();
 		return reloadBackground;
 	}
+	
+	public Level sendLevel(){
+		if(cLevel != null){
+			return cLevel;
+		}
+		else{
+			return null;
+		}
+	}
 
 }

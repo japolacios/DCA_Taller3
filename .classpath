@@ -20,7 +20,7 @@
 	<classpathentry kind="lib" path="libs/jogl-all.jar"/>
 	<classpathentry kind="lib" path="libs/LeapMotion+/LeapJava.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Taller3/libs/LeapMotion+/windows64"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Taller3/libs/LeapMotion+/macosx"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="libs/LeapMotion+/LeapMotionForProcessing.jar"/>
