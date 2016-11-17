@@ -96,7 +96,9 @@ public class Logica {
 	public void drag() {
 		if (pantalla == 1){
 			if(game != null){
+				if(game.getLevel().getSelectedMeteorite() != null){
 			game.getLevel().dragMeteorite();
+				}
 			}	
 		}
 	}

@@ -19,6 +19,7 @@ public class Player {
 	private int industry;
 	private Minim minim;
 	private AudioSample dropS;
+	private int totalFires;
 	
 	//ImageList
 	PImage[] casasImg;
@@ -65,10 +66,18 @@ public class Player {
 		int silo = 2;
 		House house1 = new House(300, 300, 1000, 1, 50, 1, casasImg, app);
 		Farm farm1 = new Farm(500, 300, 1000, 1, 50, 1, farmsImg, app);
+
+		House house2 = new House(1000, 500, 1000, 1, 50, 1, casasImg, app);
+		Farm farm2 = new Farm(800, 600, 1000, 1, 50, 1, farmsImg, app);
+		
+
 		//Silo silos = new Silo(700, 300, 1500, 1, 50, 1, casasImg3, app);
 		//buildings.add(silos);
+
 		buildings.add(house1);
 		buildings.add(farm1);
+		buildings.add(house2);
+		buildings.add(farm2);
 	}
 	
 	//Check for de Actual data of Player game stats
@@ -183,6 +192,18 @@ public class Player {
 		dropS.trigger();
 		dropTemp.start();
 		
+	}
+	
+	public int countFires(){
+		int salida = 0;
+		if(buildings != null){
+			for (int i = 0; i < buildings.size(); i++) {
+				if(buildings.get(i).giveFire() != null){
+					salida++;
+				}
+			}
+		}
+		return salida;
 	}
 	/******************
 	Getters & Setters 

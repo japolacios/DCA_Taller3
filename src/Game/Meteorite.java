@@ -41,7 +41,7 @@ public class Meteorite extends Observable implements Runnable {
 				//System.out.println("move");
 				clearChanged();	
 			}
-			if(health <= 0){
+			if(x <= 65 && y <= 435 && y >= 285){
 				setChanged();
 				notifyObservers("dead");
 				clearChanged();
